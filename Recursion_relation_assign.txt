@@ -1,0 +1,128 @@
+#Q1. 1. Find the value of T(2) for the recurrence relation T(n) = 3T(n-1) + 12n, given that T(0) = 5.
+
+We'll calculate it step by step:
+
+T(0) = 5 (given)
+T(1) = 3T(0) + 12(1) = 3(5) + 12 = 15 + 12 = 27
+T(2) = 3T(1) + 12(2) = 3(27) + 24 = 81 + 24 = 105
+So, T(2) = 105.
+
+#Q2. 2. Solve using the substitution method:
+
+#a. T(n) = T(n-1) + c
+
+By unrolling the recurrence, we get:
+
+T(n) = T(n-1) + c
+T(n-1) = T(n-2) + c
+T(n-2) = T(n-3) + c
+...
+T(1) = T(0) + c
+This can be expanded to:
+
+T(n) = T(0) + nc
+
+If we know T(0), we can substitute that value. 
+
+The final solution is: T(n) = T(0) + nc.
+
+
+
+# b. T(n) = 2T(n/2) + n
+
+We unroll this recurrence by repeatedly substituting T(n):
+
+T(n) = 2T(n/2) + n
+T(n/2) = 2T(n/4) + n/2
+T(n/4) = 2T(n/8) + n/4
+...
+After k steps, this becomes:
+
+T(n) = 2^k T(n/2^k) + kn
+
+When n/2^k = 1, k = log₂(n). 
+
+So, after substituting, we get:
+
+T(n) = 2^log₂(n) T(1) + n log₂(n)
+
+Since 2^log₂(n) = n, the final solution is: T(n) = nT(1) + n log₂(n).
+
+
+
+
+# c. T(n) = 2T(n/2) + c
+
+Unrolling it:
+
+T(n) = 2T(n/2) + c
+T(n/2) = 2T(n/4) + c
+T(n/4) = 2T(n/8) + c
+...
+After k steps, we get:
+
+T(n) = 2^k T(n/2^k) + kc
+
+When n/2^k = 1, k = log₂(n). 
+
+So the solution is:
+
+T(n) = n T(1) + c log₂(n)
+
+Assuming T(1) is constant, we get: T(n) = O(n + log₂(n)).
+                                            
+
+
+
+# d. T(n) = T(n/2) + c
+
+Unrolling:
+
+T(n) = T(n/2) + c
+T(n/2) = T(n/4) + c
+T(n/4) = T(n/8) + c
+...
+After k steps:
+
+T(n) = T(n/2^k) + kc
+
+When n/2^k = 1, k = log₂(n), so the solution is: T(n) = O(c log₂(n)).
+
+#Q3. Solve using the recursive tree approach:
+
+#a. T(n) = 2T(n-1) + 1
+
+Let's build the recursive tree:
+
+The first level is 2T(n-1).
+The second level is 2(2T(n-2)) = 4T(n-2).
+The third level is 8T(n-3), and so on.
+At the kth level, the cost is 2^kT(n-k).
+
+Eventually, when n-k = 1, the number of terms grows exponentially.
+
+The depth of the recursion is n, and each level has a constant 1 added. This gives the total cost as:
+
+T(n) = O(2^n)
+
+
+
+
+#b. T(n) = 2T(n/2) + n
+
+Here, we break the problem in half at each step, doubling the work at each level.
+
+At the top level, we do n work.
+The next level does n/2 work for two subproblems.
+The next level does n/4 work for four subproblems, and so on.
+The total cost is the sum of work at all levels, which results in:
+
+T(n) = O(n log n).
+
+
+
+
+
+
+
+
